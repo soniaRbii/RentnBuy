@@ -43,7 +43,10 @@ namespace RentnBuy
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddRazorPages();
        
-
+            services.AddAuthentication().AddFacebook(facebookOptions => {
+                facebookOptions.AppId = "1305821436509184";
+                facebookOptions.AppSecret = "39a93228aa26610797632c07cebfd136";
+            });
 
         }
 
