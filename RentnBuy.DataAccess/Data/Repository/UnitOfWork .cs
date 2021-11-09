@@ -4,9 +4,9 @@ using RentnBuy.DataAccess.Data.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Taste.DataAccess.Data.Repository.IRepository;
+using RentnBuy.DataAccess.Data.Repository;
 
-namespace Taste.DataAccess.Data.Repository
+namespace RentnBuy.DataAccess.Data.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {

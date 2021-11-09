@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RentnBuy.DataAccess;
-using RentnBuy.DataAccess.Data.Repository;
-using RentnBuy.DataAccess.Data.Repository.IRepository;
 using RentnBuy.Models;
-using Taste.DataAccess.Data.Repository.IRepository;
+using RentnBuy.DataAccess.Data.Repository.IRepository;
 
-namespace Taste.DataAccess.Data.Repository
+namespace RentnBuy.DataAccess.Data.Repository
 {
     public class OrderDetailsRepository : Repository<OrderDetails>, IOrderDetailsRepository
     {
