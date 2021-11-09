@@ -9,27 +9,27 @@ using RentnBuy.Models;
 
 namespace Taste.DataAccess.Data.Repository
 {
-    public class MenuItemRepository : Repository<Car>, ICarRepository
+    public class CarRepository : Repository<Car>, ICarRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public MenuItemRepository(ApplicationDbContext db) : base(db)
+        public CarRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
         public void Update(Car car)
         {
-            var menuItemFromDb = _db.Car.FirstOrDefault(m => m.Id == car.Id);
+            var carFromDb = _db.Car.FirstOrDefault(m => m.Id == car.Id);
 
-            menuItemFromDb.Name = car.Name;
-            menuItemFromDb.CategoryId = car.CategoryId;
-            menuItemFromDb.Description = car.Description;
-            menuItemFromDb.CarTypeId = car.CarTypeId;
-            menuItemFromDb.Price = car.Price;
+            carFromDb.Name = car.Name;
+            carFromDb.CategoryId = car.CategoryId;
+            carFromDb.Description = car.Description;
+            carFromDb.CarTypeId = car.CarTypeId;
+            carFromDb.Price = car.Price;
             if (car.Image != null)
             {
-                menuItemFromDb.Image = car.Image;
+                carFromDb.Image = car.Image;
             }
             _db.SaveChanges();
 
