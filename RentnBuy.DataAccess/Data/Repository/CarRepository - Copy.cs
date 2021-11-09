@@ -9,11 +9,11 @@ using RentnBuy.DataAccess;
 
 namespace RentnBuy.DataAccess.Data.Repository
 {
-    public class CarRepository : Repository<Car>, ICarRepository
+    public class OrderDetailsRepository : Repository<Car>, ICarRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public CarRepository(RentnBuy.DataAccess.ApplicationDbContext db) : base(db)
+        public OrderDetailsRepository(RentnBuy.DataAccess.ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
