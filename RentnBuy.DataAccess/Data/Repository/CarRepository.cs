@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using RentnBuy.DataAccess.Data.Repository.IRepository;
 using RentnBuy.Models;
+using RentnBuy.DataAccess.Data.Repository;
+using RentnBuy.DataAccess;
 
 namespace RentnBuy.DataAccess.Data.Repository
 {
@@ -11,7 +13,7 @@ namespace RentnBuy.DataAccess.Data.Repository
     {
         private readonly ApplicationDbContext _db;
 
-        public CarRepository(ApplicationDbContext db) : base(db)
+        public CarRepository(RentnBuy.DataAccess.ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
