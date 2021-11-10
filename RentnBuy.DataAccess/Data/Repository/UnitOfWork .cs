@@ -4,7 +4,7 @@ using RentnBuy.DataAccess.Data.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RentnBuy.DataAccess.Data.Repository;
+
 
 
 namespace RentnBuy.DataAccess.Data.Repository
