@@ -30,13 +30,13 @@ namespace RentnBuy.DataAccess.Data.Repository
         public ICategoryRepository Category { get; private set; }
         public ICarTypeRepository CarType { get; private set; }
         public ICarRepository Car { get; private set; }
-<<<<<<< HEAD
+
         public IShoppingCartRepository ShoppingCart { get; private set; }
 
-=======
+
         public IOrderDetailsRepository OrderDetails { get; private set; }
         public IOrderHeaderRepository OrderHeader { get; private set; }
->>>>>>> ca14c01ad9500206d0a5dd343542385d40a993cb
+
 
         public void Dispose()
         {
