@@ -14,10 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using RentnBuy.DataAccess.Data.Repository;
-
-
 namespace RentnBuy
 {
     public class Startup
@@ -44,6 +41,15 @@ namespace RentnBuy
                 .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddRazorPages();
+       
+            services.AddAuthentication().AddFacebook(facebookOptions => {
+                facebookOptions.AppId = "1305821436509184";
+                facebookOptions.AppSecret = "39a93228aa26610797632c07cebfd136";
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
