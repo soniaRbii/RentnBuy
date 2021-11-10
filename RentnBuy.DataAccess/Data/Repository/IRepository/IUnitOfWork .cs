@@ -9,6 +9,7 @@ namespace RentnBuy.DataAccess.Data.Repository.IRepository
         ICategoryRepository Category { get; }
         ICarTypeRepository CarType { get; }
         ICarRepository Car { get; }
+        IShoppingCartRepository ShoppingCart { get; }
         void Save();
     }
 }

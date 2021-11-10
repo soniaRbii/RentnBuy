@@ -15,13 +15,15 @@ namespace RentnBuy.DataAccess.Data.Repository
             Category = new CategoryRepository(_db);
             CarType = new CarTypeRepository(_db);
             Car = new CarRepository(_db);
+            ShoppingCart = new ShoppingCartRepository(_db);
         }
 
         public ICategoryRepository Category { get; private set; }
         public ICarTypeRepository CarType { get; private set; }
         public ICarRepository Car { get; private set; }
-    
-     
+        public IShoppingCartRepository ShoppingCart { get; private set; }
+
+
         public void Dispose()
         {
             _db.Dispose();

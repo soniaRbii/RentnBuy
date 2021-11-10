@@ -41,6 +41,12 @@ namespace RentnBuy
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddRazorPages();
        
             services.AddAuthentication().AddFacebook(facebookOptions => {
@@ -70,6 +76,7 @@ namespace RentnBuy
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseMvc();
         }
