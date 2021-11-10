@@ -13,8 +13,10 @@ namespace RentnBuy.DataAccess.Data.Repository.IRepository
         IOrderHeaderRepository OrderHeader { get; }
         IOrderDetailsRepository OrderDetails { get; }
         IApplicationUserRepository ApplicationUser { get; }
-    
-    
+
+        
+
+
         void Save();
     }
 }
