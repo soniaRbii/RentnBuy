@@ -58,8 +58,8 @@ namespace RentnBuy.Pages.Customer.Home
                 _unitOfWork.Save();
 
                 var count = _unitOfWork.ShoppingCart.GetAll(c => c.ApplicationUserId == ShoppingCartObj.ApplicationUserId).ToList().Count;
-                HttpContext.Session.SetInt32(SD.ShoppingCart, count);    return RedirectToPage("Index"); 
-                HttpContext.Session.SetInt32(SD.ShoppingCart, count);    return RedirectToPage("Index");
+                HttpContext.Session.SetInt32(SD.ShoppingCart, count);
+                return RedirectToPage("Index");
 
             }
             else

@@ -11,7 +11,9 @@ namespace RentnBuy.DataAccess.Data.Repository.IRepository
         ICarTypeRepository CarType { get; }
         ICarRepository Car { get; }
         IOrderHeaderRepository OrderHeader { get; }
+        IShoppingCartRepository ShoppingCart { get; }
         IOrderDetailsRepository OrderDetails { get; }
+        IApplicationUserRepository ApplicationUser { get; }
         void Save();
     }
 }
