@@ -4,9 +4,8 @@ using RentnBuy.DataAccess.Data.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Taste.DataAccess.Data.Repository.IRepository;
 
-namespace Taste.DataAccess.Data.Repository
+namespace RentnBuy.DataAccess.Data.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
@@ -18,8 +17,8 @@ namespace Taste.DataAccess.Data.Repository
             Category = new CategoryRepository(_db);
             CarType = new CarTypeRepository(_db);
             Car = new CarRepository(_db);
-/*            ApplicationUser = new ApplicationUserRepository(_db);
-            ShoppingCart = new ShoppingCartRepository(_db);*/
+            ApplicationUser = new ApplicationUserRepository(_db);
+            /* ShoppingCart = new ShoppingCartRepository(_db);*/
             OrderHeader = new OrderHeaderRepository(_db);
             OrderDetails = new OrderDetailsRepository(_db);
 /*            SP_Call = new SP_Call(_db);*/
@@ -28,8 +27,10 @@ namespace Taste.DataAccess.Data.Repository
         public ICategoryRepository Category { get; private set; }
         public ICarTypeRepository CarType { get; private set; }
         public ICarRepository Car { get; private set; }
-/*        public IApplicationUserRepository ApplicationUser { get; private set; }
-        public IShoppingCartRepository ShoppingCart { get; private set; }*/
+        public IApplicationUserRepository ApplicationUser { get; private set; }
+
+
+/*      public IShoppingCartRepository ShoppingCart { get; private set; }*/
         public IOrderDetailsRepository OrderDetails { get; private set; }
         public IOrderHeaderRepository OrderHeader { get; private set; }
 

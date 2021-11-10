@@ -3,18 +3,17 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RentnBuy.DataAccess;
-using RentnBuy.DataAccess.Data.Repository;
-using RentnBuy.DataAccess.Data.Repository.IRepository;
+using RentnBuy.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Taste.DataAccess.Data.Repository;
 
 namespace RentnBuy
 {
@@ -33,22 +32,15 @@ namespace RentnBuy
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddSingleton<IEmailSender, EmailSender>();
 
             services.AddMvc(options => options.EnableEndpointRouting = false)
                 .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddRazorPages();
-       
-            services.AddAuthentication().AddFacebook(facebookOptions => {
-                facebookOptions.AppId = "1305821436509184";
-                facebookOptions.AppSecret = "39a93228aa26610797632c07cebfd136";
-            });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
