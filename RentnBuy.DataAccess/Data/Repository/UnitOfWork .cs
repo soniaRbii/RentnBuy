@@ -1,11 +1,14 @@
-﻿using RentnBuy.DataAccess.Data.Repository.IRepository;
+﻿using RentnBuy.DataAccess;
+using RentnBuy.DataAccess.Data.Repository;
+using RentnBuy.DataAccess.Data.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using RentnBuy.DataAccess.Data.Repository;
 
 namespace RentnBuy.DataAccess.Data.Repository
 {
-    public class UnitOfWork: IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _db;
 
@@ -15,15 +18,13 @@ namespace RentnBuy.DataAccess.Data.Repository
             Category = new CategoryRepository(_db);
             CarType = new CarTypeRepository(_db);
             Car = new CarRepository(_db);
-            ShoppingCart = new ShoppingCartRepository(_db);
         }
 
         public ICategoryRepository Category { get; private set; }
         public ICarTypeRepository CarType { get; private set; }
         public ICarRepository Car { get; private set; }
-        public IShoppingCartRepository ShoppingCart { get; private set; }
-
-
+    
+     
         public void Dispose()
         {
             _db.Dispose();
@@ -35,4 +36,3 @@ namespace RentnBuy.DataAccess.Data.Repository
         }
     }
 }
-

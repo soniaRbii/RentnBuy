@@ -15,9 +15,8 @@ namespace RentnBuy.DataAccess
         {
         }
         public DbSet<Category> Category { get; set; }
+        public DbSet<CarType> CarType { get; set; }
         public DbSet<Car> Car { get; set; }
         public DbSet<CarType> CarType { get; set; }
-        public DbSet<ApplicationUser> ApplicationUser { get; set; }
-        public DbSet<ShoppingCart> ShoppingCart { get; set; }
     }  
 }

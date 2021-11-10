@@ -14,7 +14,6 @@ namespace RentnBuy.Models
         }
         public int Id { get; set; }
 
-        public int CarId { get; set; }
 
         [NotMapped]
         [ForeignKey("CarId")]

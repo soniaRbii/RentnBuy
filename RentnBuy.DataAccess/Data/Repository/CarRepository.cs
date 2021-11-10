@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using RentnBuy.DataAccess.Data.Repository.IRepository;
 using RentnBuy.Models;
-using RentnBuy.DataAccess.Data.Repository;
-using RentnBuy.DataAccess;
 
 namespace RentnBuy.DataAccess.Data.Repository
 {
@@ -13,7 +11,7 @@ namespace RentnBuy.DataAccess.Data.Repository
     {
         private readonly ApplicationDbContext _db;
 
-        public CarRepository(RentnBuy.DataAccess.ApplicationDbContext db) : base(db)
+        public CarRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
@@ -24,9 +22,9 @@ namespace RentnBuy.DataAccess.Data.Repository
 
             carFromDb.Name = car.Name;
             carFromDb.CategoryId = car.CategoryId;
-           carFromDb.Description = car.Description;
+            carFromDb.Description = car.Description;
             carFromDb.CarTypeId = car.CarTypeId;
-           carFromDb.Price = car.Price;
+            carFromDb.Price = car.Price;
             if (car.Image != null)
             {
                 carFromDb.Image = car.Image;
