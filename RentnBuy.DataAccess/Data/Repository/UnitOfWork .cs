@@ -4,7 +4,7 @@ using RentnBuy.DataAccess.Data.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using RentnBuy.DataAccess.Data.Repository;
+
 
 
 namespace RentnBuy.DataAccess.Data.Repository
@@ -21,14 +21,18 @@ namespace RentnBuy.DataAccess.Data.Repository
             Car = new CarRepository(_db);
             OrderHeader = new OrderHeaderRepository(_db);
             OrderDetails = new OrderDetailsRepository(_db);
+            ShoppingCart = new ShoppingCartRepository(_db);
+            ApplicationUser = new ApplicationUserRepository(_db);
 
         }
 
         public ICategoryRepository Category { get; private set; }
         public ICarTypeRepository CarType { get; private set; }
+        public IApplicationUserRepository ApplicationUser { get; private set; }
         public ICarRepository Car { get; private set; }
         public IOrderDetailsRepository OrderDetails { get; private set; }
         public IOrderHeaderRepository OrderHeader { get; private set; }
+        public IShoppingCartRepository ShoppingCart { get; private set; }
 
 
         public void Dispose()
