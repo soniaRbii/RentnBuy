@@ -16,7 +16,7 @@ namespace RentnBuy.Models
         public virtual OrderHeader OrderHeader { get; set; }
 
         [Required]
-        public int MenuItemId { get; set; }
+        public int CarId { get; set; }
         [ForeignKey("CarId")]
         public virtual Car Car { get; set; }
 
