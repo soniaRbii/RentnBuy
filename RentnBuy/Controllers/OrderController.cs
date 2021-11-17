@@ -11,7 +11,7 @@ using RentnBuy.Models;
 using RentnBuy.Models.ViewModels;
 using RentnBuy.Utility;
 
-namespace Taste.Controllers
+namespace RentnBuy.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
