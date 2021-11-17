@@ -16,7 +16,7 @@
                         <h1 class="text-primary">@Model.ShoppingCartObj.Car.Name</h1>
                     </div>
                     <div class="col-12 col-md-6 text-md-right">
-                        <h1 class="text-muted"> @((Model.ShoppingCartObj.Car.Price).ToString("c"))</h1>
+                        <h1 class="text-muted bg-black"> @((Model.ShoppingCartObj.Car.Price).ToString("c"))</h1>
                     </div>
                 </div>
                 <div class="card-body">
@@ -26,14 +26,14 @@
                                 <div class="row">
 
                                     <div class="col-12">
-                                        <span class="badge badge-warning h3">@Model.ShoppingCartObj.Car.Category.Name</span>
-                                        <span class="badge badge-dark">@Model.ShoppingCartObj.Car.CarType.Name</span>
+                                        <span class="badge badge-warning h3 bg-black">@Model.ShoppingCartObj.Car.Category.Name</span>
+                                        <span class="badge badge-dark bg-dark">@Model.ShoppingCartObj.Car.CarType.Name</span>
                                         <h3 class="text-success"></h3>
 
-                                        <p class="text-secondary">@Html.Raw(Model.ShoppingCartObj.Car.Description)</p>
+                                        <p class="text-secondary ">@Html.Raw(Model.ShoppingCartObj.Car.Description)</p>
 
                                         <div class="row py-4">
-                                            <div class="col-2"><label asp-for="ShoppingCartObj.Count" class="h3"></label></div>
+                                            <div class="col-2 bg-black"><label asp-for="ShoppingCartObj.Count" class="h3 bg-dark"></label></div>
                                             <div class="col-10">
                                                 <input type="text" asp-for="ShoppingCartObj.Count" class="form-control rounded" height="40px;" />
                                                 <span asp-validation-for="ShoppingCartObj.Count" class="text-danger"></span>
