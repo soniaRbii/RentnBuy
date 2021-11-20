@@ -7,6 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\template\fonts\**" />
+    <Compile Remove="wwwroot\template\sass\**" />
+    <Compile Remove="wwwroot\template\Source\**" />
+    <Content Remove="wwwroot\template\fonts\**" />
+    <Content Remove="wwwroot\template\sass\**" />
+    <Content Remove="wwwroot\template\Source\**" />
+    <EmbeddedResource Remove="wwwroot\template\fonts\**" />
+    <EmbeddedResource Remove="wwwroot\template\sass\**" />
+    <EmbeddedResource Remove="wwwroot\template\Source\**" />
+    <None Remove="wwwroot\template\fonts\**" />
+    <None Remove="wwwroot\template\sass\**" />
+    <None Remove="wwwroot\template\Source\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Pages\Admin\Cars\Index.cshtml" />
   </ItemGroup>
 
