@@ -51,8 +51,8 @@ namespace RentnBuy
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
-            
 
             //services.AddMvc(options => options.EnableEndpointRouting = false)
             //    .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
@@ -105,6 +105,8 @@ namespace RentnBuy
                 endpoints.MapRazorPages();
             });
             //app.UseMvc();
+            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
+                //app.UseMvc();
             StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
         }
     }

@@ -48,7 +48,7 @@ namespace RentnBuy.Pages.Customer.Cart
                 foreach (var cartList in OrderDetailsCartVM.listCart)
                 {
                     cartList.Car = _unitOfWork.Car.GetFirstOrDefault(m => m.Id == cartList.CarId);
-                    OrderDetailsCartVM.OrderHeader.OrderTotal += (cartList.Car.Price * cartList.Count);
+                    OrderDetailsCartVM.OrderHeader.OrderTotal += cartList.Car.Price * cartList.Count;
                 }
             }
         }
