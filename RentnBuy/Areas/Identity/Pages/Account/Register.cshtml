@@ -14,13 +14,13 @@
                         <h3 class="col-12 text-success text-center py-4 "><strong>Sign Up</strong></h3>
                         <hr />
                         <div class="form-row py-2">
-                            <div class="col">
+                            <div class="py-2">
                                 <div>
                                     <input type="text" asp-for="Input.FirstName" placeholder="First Name" autocomplete="off" class="form-control" />
                                     <span asp-validation-for="Input.FirstName" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="py-2">
                                 <div>
                                     <input type="text" asp-for="Input.LastName" placeholder="Last Name" autocomplete="off" class="form-control" />
                                     <span asp-validation-for="Input.LastName" class="text-danger"></span>
@@ -43,7 +43,7 @@
                             <input type="password" asp-for="Input.ConfirmPassword" placeholder="Confirm Password" autocomplete="off" class="form-control" />
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
-                        <div class="py-2">
+                        <div class="card-body px-lg-2">
                             <input type="radio" name="rdUserRole" value="@SD.FrontDeskRole" /> @SD.FrontDeskRole
                             <input type="radio" name="rdUserRole" value="@SD.ManagerRole" /> @SD.ManagerRole
                             <input type="radio" name="rdUserRole" value="@SD.CustomerRole" /> @SD.CustomerRole

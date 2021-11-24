@@ -62,8 +62,8 @@ namespace RentnBuy
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddAuthentication().AddFacebook(facebookOptions =>
             {
-                facebookOptions.AppId = "2481959558526884";
-                facebookOptions.AppSecret = "25afe44c4799c1c91dd02bfd4433cc7d";
+                facebookOptions.AppId = "1305821436509184";
+                facebookOptions.AppSecret = "39a93228aa26610797632c07cebfd136";
             });
 
             

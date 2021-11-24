@@ -62,9 +62,7 @@
                                     }
 
 
-                                    <button type="submit" class="btn btn-warning form-control mb-3" asp-page-handler="OrderCancel" asp-route-OrderId="@item.OrderHeader.Id">
-                                        <i class="fas fa-times"></i> &nbsp; Cancel Order
-                                    </button>
+                                 
                                     <button type="submit" class="btn btn-danger form-control mb-3" asp-page-handler="OrderRefund" asp-route-OrderId="@item.OrderHeader.Id">
                                         <i class="fas fa-times"></i> &nbsp; Refund Order
                                     </button>

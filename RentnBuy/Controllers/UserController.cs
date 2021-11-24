@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RentnBuy.DataAccess.Data.Repository.IRepository;
 
-namespace Taste.Controllers
+namespace RentnBuy.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
