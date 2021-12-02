@@ -97,17 +97,20 @@
     <div class="row">
         @foreach (var category in Model.CategoryList)
         {
+
+
         <div class="col-12 col-md-4 p-5 mt-3">
 
-           
-                <a href="#"><img src="~/images/cars/car.png" class="rounded-circle img-fluid border"></a>
+            @foreach (var car in Model.CarsList.Where(c => c.CategoryId == category.Id))
+            {
+                <a href="#"><img src="@car.Image" class="rounded-circle img-fluid border"></a>
                 <h5 class="text-center mt-3 mb-3">@category.Name</h5>
+            }
+            <p class="text-center"><a href="/Customer/Shop/Index" class="btn btn-success">Go Shop</a></p>
 
-                <p class="text-center"><a href="/Customer/Shop/Index" class="btn btn-success">Go Shop</a></p>
+        </div>
 
-            </div>
-
-        }
+            }
 
         </div>
     
