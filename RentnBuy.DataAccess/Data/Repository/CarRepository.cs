@@ -27,6 +27,7 @@ namespace RentnBuy.DataAccess.Data.Repository
             carFromDb.Description = car.Description;
             carFromDb.CarTypeId = car.CarTypeId;
             carFromDb.Price = car.Price;
+            carFromDb.quantity = car.quantity;
             if (car.Image != null)
             {
                 carFromDb.Image = car.Image;

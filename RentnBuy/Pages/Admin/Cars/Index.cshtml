@@ -1,7 +1,8 @@
 ﻿@page
 @using RentnBuy.Utility
 
-
+@if (User.IsInRole(SD.ManagerRole))
+{
 
     <div class="border backgroundWhite container">
         <div class="row">
@@ -26,7 +27,13 @@
             </thead>
         </table>
     </div>
-
+}
+else
+{
+    <div>
+        <h1 class="text-danger"> Access Denied</h1>
+    </div>
+}
 @section Scripts{
     <script src="~/js/car.js"></script>
 }
