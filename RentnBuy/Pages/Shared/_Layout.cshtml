@@ -1,79 +1,295 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@using RentnBuy.Utility
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Rent & Buy</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="~/template/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="~/template/img/favicon.ico">
+
+    <link rel="stylesheet" href="~/template/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/template/css/templatemo.css">
+    <link rel="stylesheet" href="~/template/css/custom.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloud<flare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.css" />
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="~/template/css/fontawesome.min.css">
+
 </head>
 
-    <body class="search-background">
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-secondary border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand text-white" asp-area="" asp-page="/Index">Rent & Buy</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                        <partial name="_LoginPartial" />
-                        <ul class="navbar-nav flex-grow-1">
+<body>
+    <!-- Start Top Nav -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
+        <div class="container text-light">
+            <div class="w-100 d-flex justify-content-between">
+                <div>
+
+                    <!--------Here i am going to add partial login------->
+
+                    <partial name="_LoginPartial" />
+
+                    <!--------Here i am going to add partial login------->
+
+
+                </div>
+                <div>
+                    <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://twitter.com/" target="_blank"><i class="fab fa-twitter fa-sm fa-fw me-2"></i></a>
+                    <a class="text-light" href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin fa-sm fa-fw"></i></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Close Top Nav -->
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <a class="navbar-brand text-success logo h1 align-self-center" asp-area="" asp-page="/Index">
+                Rent&Buy
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+           
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
+                @if (!User.IsInRole(SD.ManagerRole))
+                {
+                    <div class="flex-fill">
+
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+
+                            <li class="nav-item ">
+                                <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
+                            </li>
+
                             <li class="nav-item">
-                                <a class="nav-link text-white" asp-area="" asp-page="/Index">Home</a>
+                                <a class="nav-link" href="/Customer/about/Index">About</a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropDown" data-toggle="dropdown">
-                                    Admin
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item text-black" asp-page="/Admin/Category/Index">Category</a>
-                                    <a class="dropdown-item text-black" asp-page="/Admin/CarType/Index">Cars Type</a>
-                                    <a class="dropdown-item text-black" asp-page="/Admin/Cars/Index">Cars list</a>
-                                    <a class="dropdown-item text-black" asp-page="/Admin/User/Index">Users</a>
-                                </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Customer/Shop/Index">Shop</a>
                             </li>
-                            <li>
-                                <a href="#" class="nav-link text-white-50">
-                                    <i class="fas fa-shopping-cart"></i> &nbsp; (0)
-                                </a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Customer/contact/Index">Contact</a>
                             </li>
+
+
+
                         </ul>
                     </div>
+                }
+                @if (User.IsInRole(SD.ManagerRole)) {
+
+                    <div class="flex-fill">
+
+                        <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/Admin/Category/Index">Category</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Admin/CarType/Index">Cars Type</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Admin/Cars/Index">Car</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Admin/User/Index">Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-page="/Admin/Order/ManageOrder">Manage orders</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-page="/Admin/Order/OrderList">Orders Pickup</a>
+                            </li>
+
+
+
+
+                        </ul>
+                    </div>
+                }
+                <div class="navbar align-self-center d-flex">
+                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
+                            <div class="input-group-text">
+                                <i class="fa fa-fw fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
+                    </a>
+
+                    <a class="nav-icon position-relative text-decoration-none" href="/Customer/Cart/Index">
+                        @{
+                            var count = HttpContextAccessor.HttpContext.Session.GetInt32(SD.ShoppingCart);
+                        }
+
+                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill  text-dark"> &nbsp; (@count)</span>
+                    </a>
+
                 </div>
-            </nav>
-        </header>
+            </div>
+
+            </div>
+    </nav>
+    <!-- Close Header -->
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <!-- End Banner Hero -->
+    <!--------This is the old div--------->
+    <div class="container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+  
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
+            <div class="row">
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Rent & Buy</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li>
+                            <i class="fas fa-map-marker-alt fa-fw"></i>
+                            123 Consectetur at ligula 10660
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="#">Sport cars</a></li>
+                        <li><a class="text-decoration-none" href="#">Minivan</a></li>
+                        <li><a class="text-decoration-none" href="#">coupe</a></li>
+                        <li><a class="text-decoration-none" href="#">SPORT-UTILITY VEHICLE</a></li>
+                        <li><a class="text-decoration-none" href="#">CONVERTIBLE</a></li>
+                        <li><a class="text-decoration-none" href="#">HATCHBACK</a></li>
+                        <li><a class="text-decoration-none" href="#">SEDAN</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 pt-5">
+                    <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
+                    <ul class="list-unstyled text-light footer-link-list">
+                        <li><a class="text-decoration-none" href="/Customer/Home/Index">Home</a></li>
+                        <li><a class="text-decoration-none" href="/Customer/about/Index">About Us</a></li>
+                        <li><a class="text-decoration-none" href="/Customer/contact/Index">Shop Locations</a></li>
+
+                        <li><a class="text-decoration-none" href="/Customer/contact/Index">Contact</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="row text-light mb-4">
+                <div class="col-12 mb-3">
+                    <div class="w-100 my-3 border-top border-light"></div>
+                </div>
+                <div class="col-auto me-auto">
+                    <ul class="list-inline text-left footer-icons">
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
+                        </li>
+                        <li class="list-inline-item border border-light rounded-circle text-center">
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-auto">
+                    <label class="sr-only" for="subscribeEmail">Email address</label>
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control bg-dark border-light" id="subscribeEmail" placeholder="Email address">
+                        <div class="input-group-text btn-success text-light">Subscribe</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <footer class="border-top footer text-white bg-secondary">
+        <div class="w-100 bg-black py-3">
             <div class="container">
-                &copy; 2021 - RentnBuy
+                <div class="row pt-2">
+                    <div class="col-12">
+                        <p class="text-left text-light">
+                            Copyright &copy; 2021 Company Name
+                            | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                        </p>
+                    </div>
+                </div>
             </div>
-        </footer>
+        </div>
 
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        <script src="https://kit.fontawesome.com/e19c476714.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.4.10/cleave.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.4.10/addons/cleave-phone.us.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.9.0/jquery.serializejson.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=g28lhnxtlihu4l4a381gw7tz47voznshwbi10lmsvlekrfme"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
+    </footer>
+    <!-- End Footer -->
+    <!-- Start Script -->
+    <script src="~/template/js/jquery-1.11.0.min.js"></script>
+    <script src="~/template/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="~/template/js/bootstrap.bundle.min.js"></script>
+    <script src="~/template/js/templatemo.js"></script>
+    <script src="~/template/js/custom.js"></script>
+    <script src="https://kit.fontawesome.com/e19c476714.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.4.10/cleave.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.4.10/addons/cleave-phone.us.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.9.0/jquery.serializejson.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=g28lhnxtlihu4l4a381gw7tz47voznshwbi10lmsvlekrfme"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.10.0/jquery.timepicker.js"></script>
+    @RenderSection("Scripts", required: false)
+    <!-- End Script -->
+    @section Scripts{
+        <script src="~/js/category.js"></script>
+    }
+</body>
 
-        @RenderSection("Scripts", required: false)
-    </body>
 </html>

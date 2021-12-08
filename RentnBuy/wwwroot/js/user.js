@@ -23,14 +23,14 @@ function loadList() {
                     if (lockout > today) {
                         //currently user is locked
                         return ` <div class="text-center">
-                                <a class="btn btn-danger text-white" style="cursor:pointer; width:100px;" onclick=LockUnlock('${data.id}')>
+                                <a class="btn btn-danger text-white"  onclick=LockUnlock('${data.id}')>
                                    <i class="fas fa-lock-open"></i> Unlock
                                 </a></div>`;
 
                     }
                     else {
                         return ` <div class="text-center">
-                                <a class="btn btn-success text-white" style="cursor:pointer; width:100px;" onclick=LockUnlock('${data.id}')>
+                                <a class="btn btn-success text-white"  onclick=LockUnlock('${data.id}')>
                                     <i class="fas fa-lock"></i> Lock
                                 </a></div>`;
                     }

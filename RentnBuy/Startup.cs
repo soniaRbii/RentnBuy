@@ -51,8 +51,8 @@ namespace RentnBuy
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
-            
 
             //services.AddMvc(options => options.EnableEndpointRouting = false)
             //    .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
@@ -62,8 +62,8 @@ namespace RentnBuy
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddAuthentication().AddFacebook(facebookOptions =>
             {
-                facebookOptions.AppId = "2481959558526884";
-                facebookOptions.AppSecret = "25afe44c4799c1c91dd02bfd4433cc7d";
+                facebookOptions.AppId = "1305821436509184";
+                facebookOptions.AppSecret = "39a93228aa26610797632c07cebfd136";
             });
 
             
@@ -105,6 +105,8 @@ namespace RentnBuy
                 endpoints.MapRazorPages();
             });
             //app.UseMvc();
+            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
+                //app.UseMvc();
             StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
         }
     }
