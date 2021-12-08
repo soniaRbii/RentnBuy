@@ -98,7 +98,7 @@
                     </li>
 
                 </ul>
-                @if (Model.OrderDetailsVM.OrderHeader.Status.Equals(SD.StatusReady) && (User.IsInRole(SD.ManagerRole) || User.IsInRole(SD.FrontDeskRole)))
+                @if (Model.OrderDetailsVM.OrderHeader.Status.Equals(SD.StatusReady) && (User.IsInRole(SD.ManagerRole) ))
                 {
                     <button type="submit" class="btn btn-success form-control" asp-page-handler="OrderConfirm" asp-route-OrderId="@Model.OrderDetailsVM.OrderHeader.Id"><i class="far fa-thumbs-up"></i> Confirm Pickup</button>
                 }
@@ -107,7 +107,7 @@
 
                     <button type="submit" disabled class="btn btn-info form-control">@Model.OrderDetailsVM.OrderHeader.Status</button>
                 }
-                @if ((User.IsInRole(SD.ManagerRole) || User.IsInRole(SD.FrontDeskRole))
+                @if ((User.IsInRole(SD.ManagerRole) )
                    && (Model.OrderDetailsVM.OrderHeader.Status.Equals(SD.StatusSubmitted)
                    || Model.OrderDetailsVM.OrderHeader.Status.Equals(SD.StatusReady)
                    || Model.OrderDetailsVM.OrderHeader.Status.Equals(SD.StatusInProcess)))
