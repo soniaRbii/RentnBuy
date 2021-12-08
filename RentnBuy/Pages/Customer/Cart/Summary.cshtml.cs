@@ -118,6 +118,20 @@ namespace RentnBuy.Pages.Customer.Cart
                     //email 
                     detailCart.OrderHeader.PaymentStatus = SD.PaymentStatusApproved;
                     detailCart.OrderHeader.Status = SD.StatusSubmitted;
+                    
+            foreach (var item in detailCart.listCart)
+            {
+                item.Car = _unitOfWork.Car.GetFirstOrDefault(m => m.Id == item.CarId);
+                    
+                        item.Car.quantity = item.Car.quantity - item.Count;
+                       
+
+
+
+                        _unitOfWork.Save();
+
+            }
+                  
                 }
                 else
                 {

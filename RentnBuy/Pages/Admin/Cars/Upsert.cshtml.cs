@@ -70,9 +70,28 @@ namespace RentnBuy.Pages.Admin.Cars
 
                 _unitOfWork.Car.Add(MenuItemObj.Car);
             }
-           
+
             _unitOfWork.Save();
-            return RedirectToPage("./Index");
+            if (MenuItemObj.Car.Id != 0)
+            {
+                foreach (var item in _unitOfWork.Car.GetAll())
+                {
+                    if (MenuItemObj.Car.Name.Equals(item.Name) && MenuItemObj.Car.CategoryId.Equals(item.CategoryId) && MenuItemObj.Car.CarTypeId.Equals(item.CarTypeId) && MenuItemObj.Car.Price.Equals(item.Price))
+                    {
+                        item.quantity = item.quantity + MenuItemObj.Car.quantity;
+                        _unitOfWork.Car.Update(item);
+                        
+
+
+                    }
+                   
+                }
+                _unitOfWork.Save();
+
+            }
+
+
+                    return RedirectToPage("./Index");
         }
     }
 }
