@@ -87,34 +87,27 @@
         <div class="col-lg-6 m-auto">
             <h1 class="h1">Categories of The Month</h1>
             <p>
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
+                We have so many categories and a lot of choices, you can choose the best categorie for your needs.
             </p>
         </div>
     </div>
-  
 
-    <div class="row">
-        @foreach (var category in Model.CategoryList)
-        {
-
-
-        <div class="col-12 col-md-4 p-5 mt-3">
-
-            @foreach (var car in Model.CarsList.Where(c => c.CategoryId == category.Id))
-            {
-                <a href="#"><img src="@car.Image" class="rounded-circle img-fluid border"></a>
-                <h5 class="text-center mt-3 mb-3">@category.Name</h5>
-            }
-            <p class="text-center"><a href="/Customer/Shop/Index" class="btn btn-success">Go Shop</a></p>
-
+        <div class="row">
+          @foreach (var category in Model.CategoryList)
+          {
+          <div class="col-12 col-md-4 p-5 mt-3">
+              @foreach (var car in Model.CarsList.Where(c => c.CategoryId == category.Id))
+              {
+                  <a href="#"><img src="@car.Image" class="img-fluid border"></a>
+                  <h5 class="text-center mt-3 mb-3">@category.Name</h5>
+                  break;
+              }
+              <p class="text-center"><a href="/Customer/Shop/Index" class="btn btn-success">Go Shop</a></p>
+          </div>
+              }
         </div>
 
-            }
-
-        </div>
-    
-    </section>
+</section>
 <!-- End Categories of The Month -->
 <!-- Start Featured Product -->
 <section class="bg-light">

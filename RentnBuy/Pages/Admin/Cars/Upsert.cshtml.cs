@@ -1,17 +1,20 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RentnBuy.DataAccess.Data.Repository.IRepository;
-
-using RentnBuy.Models.ViewModels;
 using RentnBuy.Models;
-
+using RentnBuy.Models.ViewModels;
+using RentnBuy.Utility;
 
 namespace RentnBuy.Pages.Admin.Cars
 {
+    [Authorize(Roles = SD.ManagerRole)]
     public class UpsertModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -32,11 +35,11 @@ namespace RentnBuy.Pages.Admin.Cars
             {
                 CategoryList = _unitOfWork.Category.GetCategoryListForDropDown(),
                 CarsTypeList = _unitOfWork.CarType.GetCarsTypeListForDropDown(),
-                Car = new  Models.Car()
+                Car = new Models.Car()
             };
             if (id != null)
             {
-                MenuItemObj.Car = _unitOfWork.Car.GetFirstOrDefault(u => +u.Id == id);
+                MenuItemObj.Car = _unitOfWork.Car.GetFirstOrDefault(u => u.Id == id);
                 if (MenuItemObj.Car == null)
                 {
                     return NotFound();
@@ -70,28 +73,40 @@ namespace RentnBuy.Pages.Admin.Cars
 
                 _unitOfWork.Car.Add(MenuItemObj.Car);
             }
-
-            _unitOfWork.Save();
-            if (MenuItemObj.Car.Id != 0)
+            else
             {
-                foreach (var item in _unitOfWork.Car.GetAll())
+                //Edit Menu Item
+                var objFromDb = _unitOfWork.Car.Get(MenuItemObj.Car.Id);
+                if (files.Count > 0)
                 {
-                    if (MenuItemObj.Car.Name.Equals(item.Name) && MenuItemObj.Car.CategoryId.Equals(item.CategoryId) && MenuItemObj.Car.CarTypeId.Equals(item.CarTypeId) && MenuItemObj.Car.Price.Equals(item.Price))
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(webRootPath, @"images\cars");
+                    var extension = Path.GetExtension(files[0].FileName);
+
+                    var imagePath = Path.Combine(webRootPath, objFromDb.Image.TrimStart('\\'));
+
+                    if (System.IO.File.Exists(imagePath))
                     {
-                        item.quantity = item.quantity + MenuItemObj.Car.quantity;
-                        _unitOfWork.Car.Update(item);
-                        
-
-
+                        System.IO.File.Delete(imagePath);
                     }
-                   
+
+
+                    using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        files[0].CopyTo(fileStream);
+                    }
+                    MenuItemObj.Car.Image = @"\images\cars\" + fileName + extension;
                 }
-                _unitOfWork.Save();
+                else
+                {
+                    MenuItemObj.Car.Image = objFromDb.Image;
+                }
 
+
+                _unitOfWork.Car.Update(MenuItemObj.Car);
             }
-
-
-                    return RedirectToPage("./Index");
+            _unitOfWork.Save();
+            return RedirectToPage("./Index");
         }
     }
 }
