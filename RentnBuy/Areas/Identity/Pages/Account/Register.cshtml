@@ -44,7 +44,6 @@
                             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                         </div>
                         <div class="card-body px-lg-2">
-                            <input type="radio" name="rdUserRole" value="@SD.FrontDeskRole" /> @SD.FrontDeskRole
                             <input type="radio" name="rdUserRole" value="@SD.ManagerRole" /> @SD.ManagerRole
                             <input type="radio" name="rdUserRole" value="@SD.CustomerRole" /> @SD.CustomerRole
                         </div>
@@ -66,7 +65,7 @@
 
 
 
-<h1>@ViewData["Title"]</h1>
+<!-- <h1>@ViewData["Title"]</h1>
 
 <div class="row">
     <div class="col-md-4">
@@ -103,6 +102,7 @@
         </section>
     </div>
 </div>
+    -->
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
